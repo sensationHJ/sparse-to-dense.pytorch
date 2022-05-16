@@ -66,9 +66,15 @@ def create_data_loaders(args):
         batch_size=1, shuffle=False, num_workers=args.workers, pin_memory=True)
 
     # put construction of train loader here, for those who are interested in testing only
+    # if not args.evaluate:
+    #     train_loader = torch.utils.data.DataLoader(
+    #         train_dataset, batch_size=args.batch_size, shuffle=True,
+    #         num_workers=args.workers, pin_memory=True, sampler=None,
+    #         worker_init_fn=lambda work_id:np.random.seed(work_id))
+
     if not args.evaluate:
         train_loader = torch.utils.data.DataLoader(
-            train_dataset, batch_size=args.batch_size, shuffle=True,
+            train_dataset, batch_size=1, shuffle=True,
             num_workers=args.workers, pin_memory=True, sampler=None,
             worker_init_fn=lambda work_id:np.random.seed(work_id))
             # worker_init_fn ensures different sampling patterns for each data loading thread
