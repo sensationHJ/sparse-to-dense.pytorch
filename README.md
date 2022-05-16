@@ -123,4 +123,16 @@ If you use our code or method in your work, please consider citing the following
 		year={2018}
 	}
 
+## HJ edit
+transform.py line 337
+
+```python
+if img.ndim == 3:
+	# return misc.imresize(img, self.size, self.interpolation)
+	return np.array(Image.fromarray(img).resize(self.size,resample=Image.Resampling.NEAREST))
+elif img.ndim == 2:
+	# return misc.imresize(img, self.size, self.interpolation, 'F')
+	return np.array(Image.fromarray(img).resize(self.size,resample=Image.Resampling.NEAREST), format=np.float32)
+```
+
 Please create a new issue for code-related questions. Pull requests are welcome.
